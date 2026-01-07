@@ -28,11 +28,11 @@
             letter-spacing: 0.05em;
         }
 
-        /* Standardized Bold Styling replaces the redundant JS engine */
-        strong {
+        /* Standardized Bold Styling */
+        .ac-bold {
             font-weight: 800;
             color: #fff;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 12px rgba(255, 0, 127, 0.4);
         }
 
         .glass-card {
@@ -46,6 +46,36 @@
             border-color: var(--ac-pink);
             box-shadow: 0 10px 30px -10px rgba(255, 0, 127, 0.3);
         }
+
+        /* Hint Interaction Styles */
+        .guess-btn {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-width: 1px;
+            border-color: transparent;
+        }
+
+        .guess-btn.active {
+            background: rgba(255, 0, 127, 0.2);
+            color: white;
+            border-color: var(--ac-pink);
+        }
+
+        .reasoning-box {
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .reasoning-box.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hint-emoji { font-size: 2.5rem; }
 
         /* Benchmarking Table Styles */
         .stat-table { width: 100%; font-size: 0.75rem; text-align: left; }
@@ -178,7 +208,7 @@
                     </div>
                     <div class="glass-card p-4 rounded-xl border-l-4 border-[--ac-cyan]">
                         <h4 class="font-bold text-[--ac-cyan] italic uppercase">GK Depth</h4>
-                        <p class="text-xs text-gray-400 mt-1">Departure of **Stambaugh** leaves only **Anderson** and **Seabert**. A third keeper is required for competition.</p>
+                        <p class="text-xs text-gray-400 mt-1">Departure of <strong>Stambaugh</strong> leaves only <strong>Anderson</strong> and <strong>Seabert</strong>. A third keeper is required for competition.</p>
                     </div>
                 </div>
             </div>
@@ -262,14 +292,11 @@
                             <span class="market-tag text-white bg-[--ac-cyan]/40">USWYNT</span><br/>
                             **Mia Minestrella** (Duke) - Local winger/MF and elite creative.
                         </li>
-                        <li>
-                            <span class="market-tag text-white bg-[--ac-cyan]/40">USWYNT</span><br/>
-                            **Emerick Fennell** - High-ceiling defender with 1v1 speed.
-                        </li>
                     </ul>
                 </div>
             </div>
         </section>
+
 
         <!-- 4. The January Five Hints Matrix -->
         <section id="teasers" class="space-y-12">
@@ -279,82 +306,120 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
-                <!-- Hint 1 -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col">
+                
+                <!-- Hint 1: Jan 6 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col hint-card">
                     <p class="text-[10px] font-bold text-gray-500 mb-4 uppercase">Jan 6</p>
                     <div class="hint-emoji self-center mb-6">🇧🇷🎩</div>
-                    <div class="space-y-2 mb-6 text-xs bold-target">
-                        <div class="flex items-center"><span class="guess-rank bg-[--ac-pink] text-white">1</span> **Duda Sampaio**</div>
-                        <div class="flex items-center opacity-60"><span class="guess-rank bg-gray-700 text-white">2</span> Ary Borges</div>
-                        <div class="flex items-center opacity-60"><span class="guess-rank bg-gray-700 text-white">3</span> Kerolin</div>
+                    <div class="space-y-2 mb-6 text-[11px] font-bold">
+                        <div onclick="showReason(this, 'jan6-1')" class="guess-btn active px-2 py-1 rounded border border-transparent">Ary Borges</div>
+                        <div onclick="showReason(this, 'jan6-2')" class="guess-btn px-2 py-1 rounded border border-transparent">Duda Sampaio</div>
+                        <div onclick="showReason(this, 'jan6-3')" class="guess-btn px-2 py-1 rounded border border-transparent">Kerolin</div>
                     </div>
-                    <div class="mt-auto pt-4 border-t border-gray-800 bold-target">
-                        <p class="text-[9px] text-[--ac-pink] font-bold uppercase mb-2">Reasoning</p>
-                        <p class="text-[10px] leading-relaxed text-gray-400 italic">The "Magician" (🎩) emoji is the standard Brazilian descriptor for a creative pivot. **Sampaio** fits the technical profile ACFC needs to solve their build-up issues.</p>
+                    <div class="mt-auto pt-4 border-t border-gray-800 italic text-[11px] text-gray-400 bold-target">
+                        <div id="jan6-1" class="reasoning-box active">
+                            **Reasoning:** A high-profile Racing Louisville exit. While more of a box-to-box engine, her technical flair fits the Brazilian 🇧🇷 theme perfectly for a blockbuster trade.
+                        </div>
+                        <div id="jan6-2" class="reasoning-box">
+                            **Reasoning:** Sampaio is the current "Camisa 10" for the Brazil National Team. The 🎩 emoji is her signature label in the Brasileirão. Her ability to play progressive passes would solve the build-up crisis.
+                        </div>
+                        <div id="jan6-3" class="reasoning-box">
+                            **Reasoning:** The 2023 NWSL MVP. While currently with Courage, rumors of a record-breaking transfer to a "prestige market" like LA have persisted. She is the ultimate 🎩 magician.
+                        </div>
                     </div>
                 </div>
 
-                <!-- Hint 2 -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col">
+                <!-- Hint 2: Jan 7 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col hint-card">
                     <p class="text-[10px] font-bold text-gray-500 mb-4 uppercase">Jan 7</p>
                     <div class="hint-emoji self-center mb-6">🍒💣</div>
-                    <div class="space-y-2 mb-6 text-xs bold-target">
-                        <div class="flex items-center"><span class="guess-rank bg-[--ac-pink] text-white">1</span> **Michelle Cooper**</div>
-                        <div class="flex items-center opacity-60"><span class="guess-rank bg-gray-700 text-white">2</span> Karsyn Cherry</div>
-                        <div class="flex items-center opacity-60"><span class="guess-rank bg-gray-700 text-white">3</span> Trinity Byars</div>
+                    <div class="space-y-2 mb-6 text-[11px] font-bold">
+                        <div onclick="showReason(this, 'jan7-1')" class="guess-btn active px-2 py-1 rounded border border-transparent">Michelle Cooper</div>
+                        <div onclick="showReason(this, 'jan7-2')" class="guess-btn px-2 py-1 rounded border border-transparent">Karsyn Cherry</div>
+                        <div onclick="showReason(this, 'jan7-3')" class="guess-btn px-2 py-1 rounded border border-transparent">Trinity Byars</div>
                     </div>
-                    <div class="mt-auto pt-4 border-t border-gray-800 bold-target">
-                        <p class="text-[9px] text-[--ac-pink] font-bold uppercase mb-2">Reasoning</p>
-                        <p class="text-[10px] leading-relaxed text-gray-400 italic">"Cherry Bomb" likely refers to a high-explosive asset acquired via a trade for a "Cherry" pick. **Cooper** provides world-class verticality.</p>
+                    <div class="mt-auto pt-4 border-t border-gray-800 italic text-[11px] text-gray-400 bold-target">
+                        <div id="jan7-1" class="reasoning-box active">
+                            **Reasoning:** A 💣 speedster. Rumored to be available via a trade involving ACFC's highest allocation assets. Cooper is the vertical threat needed to stretch low blocks.
+                        </div>
+                        <div id="jan7-2" class="reasoning-box">
+                            **Reasoning:** The literal 🍒 name match. A young, versatile defensive prospect from Louisville. Acquiring her would signal a youth-first rebuilding strategy.
+                        </div>
+                        <div id="jan7-3" class="reasoning-box">
+                            **Reasoning:** The NCAA's most explosive scorer. Her signing would be a 💣 bombshell in the free agency market. She represents the "New Era" ACFC is branding.
+                        </div>
                     </div>
                 </div>
 
-                <!-- Hint 3 -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col">
+                <!-- Hint 3: Jan 7 (Local) -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col hint-card">
                     <p class="text-[10px] font-bold text-gray-500 mb-4 uppercase">Jan 7</p>
                     <div class="hint-emoji self-center mb-6">💙😈➡️🪽</div>
-                    <div class="space-y-2 mb-6 text-xs bold-target">
-                        <div class="flex items-center"><span class="guess-rank bg-[--ac-pink] text-white">1</span> **Mia Minestrella**</div>
-                        <div class="flex items-center opacity-60"><span class="guess-rank bg-gray-700 text-white">2</span> Maggie Graham</div>
-                        <div class="flex items-center opacity-60"><span class="guess-rank bg-gray-700 text-white">3</span> Kat Rader</div>
+                    <div class="space-y-2 mb-6 text-[11px] font-bold">
+                        <div onclick="showReason(this, 'jan7b-1')" class="guess-btn active px-2 py-1 rounded border border-transparent">Mia Minestrella</div>
+                        <div onclick="showReason(this, 'jan7b-2')" class="guess-btn px-2 py-1 rounded border border-transparent">Maggie Graham</div>
+                        <div onclick="showReason(this, 'jan7b-3')" class="guess-btn px-2 py-1 rounded border border-transparent">Kat Rader</div>
                     </div>
-                    <div class="mt-auto pt-4 border-t border-gray-800 bold-target">
-                        <p class="text-[9px] text-[--ac-pink] font-bold uppercase mb-2">Reasoning</p>
-                        <p class="text-[10px] leading-relaxed text-gray-400 italic">A Duke Blue Devil (💙😈) becoming an Angel (🪽). Local star **Minestrella** is the perfect marketing and tactical centerpiece.</p>
+                    <div class="mt-auto pt-4 border-t border-gray-800 italic text-[11px] text-gray-400 bold-target">
+                        <div id="jan7b-1" class="reasoning-box active">
+                            **Reasoning:** The local legend from Redondo Beach. As a Duke Blue Devil (💙😈), her transition to an Angel (🪽) is the perfect homecoming narrative.
+                        </div>
+                        <div id="jan7b-2" class="reasoning-box">
+                            **Reasoning:** Another Duke 💙😈 standout midfielder. Known for tactical discipline and ball retention, she would provide necessary defensive cover.
+                        </div>
+                        <div id="jan7b-3" class="reasoning-box">
+                            **Reasoning:** Duke's leading striker. If ACFC fails to land a veteran 9, Rader represents the high-upside alternative to fill the goal vacuum.
+                        </div>
                     </div>
                 </div>
 
-                <!-- Hint 4 -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col">
+                <!-- Hint 4: Jan 8 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col hint-card">
                     <p class="text-[10px] font-bold text-gray-500 mb-4 uppercase">Jan 8</p>
                     <div class="hint-emoji self-center mb-6">🍢🏆</div>
-                    <div class="space-y-2 mb-6 text-xs bold-target">
-                        <div class="flex items-center"><span class="guess-rank bg-[--ac-pink] text-white">1</span> **Hikaru Naomoto**</div>
-                        <div class="flex items-center opacity-60"><span class="guess-rank bg-gray-700 text-white">2</span> Mina Tanaka</div>
-                        <div class="flex items-center opacity-60"><span class="guess-rank bg-gray-700 text-white">3</span> Jun Endo</div>
+                    <div class="space-y-2 mb-6 text-[11px] font-bold">
+                        <div onclick="showReason(this, 'jan8-1')" class="guess-btn active px-2 py-1 rounded border border-transparent">Hikaru Naomoto</div>
+                        <div onclick="showReason(this, 'jan8-2')" class="guess-btn px-2 py-1 rounded border border-transparent">Mina Tanaka</div>
+                        <div onclick="showReason(this, 'jan8-3')" class="guess-btn px-2 py-1 rounded border border-transparent">Jun Endo</div>
                     </div>
-                    <div class="mt-auto pt-4 border-t border-gray-800 bold-target">
-                        <p class="text-[9px] text-[--ac-pink] font-bold uppercase mb-2">Reasoning</p>
-                        <p class="text-[10px] leading-relaxed text-gray-400 italic">The "Oden" (🍢) culinary nod points to a Japanese cultural icon. **Naomoto** is a serial winner with Urawa Reds.</p>
+                    <div class="mt-auto pt-4 border-t border-gray-800 italic text-[11px] text-gray-400 bold-target">
+                        <div id="jan8-1" class="reasoning-box active">
+                            **Reasoning:** The 🍢 (Oden) culinary hint strongly points to a WE League star. Naomoto has won multiple 🏆 titles with Urawa Reds and is an international ball-winner.
+                        </div>
+                        <div id="jan8-2" class="reasoning-box">
+                            **Reasoning:** A prolific 🏆 winner with INAC Kobe. As a veteran forward, she brings the "winning culture" ACFC lacked during their 2025 slide.
+                        </div>
+                        <div id="jan8-3" class="reasoning-box">
+                            **Reasoning:** A potential return from injury announcement. While already an "Angel," the 🍢🏆 could signal a new contract extension.
+                        </div>
                     </div>
                 </div>
 
-                <!-- Hint 5 -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col">
+                <!-- Hint 5: Jan 9 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col hint-card">
                     <p class="text-[10px] font-bold text-gray-500 mb-4 uppercase">Jan 9</p>
                     <div class="hint-emoji self-center mb-6">🛡️🇺🇸</div>
-                    <div class="space-y-2 mb-6 text-xs bold-target">
-                        <div class="flex items-center"><span class="guess-rank bg-[--ac-pink] text-white">1</span> **Emily Sams**</div>
-                        <div class="flex items-center opacity-60"><span class="guess-rank bg-gray-700 text-white">2</span> Naomi Girma</div>
-                        <div class="flex items-center opacity-60"><span class="guess-rank bg-gray-700 text-white">3</span> Elise Evans</div>
+                    <div class="space-y-2 mb-6 text-[11px] font-bold">
+                        <div onclick="showReason(this, 'jan9-1')" class="guess-btn active px-2 py-1 rounded border border-transparent">Jenna Nighswonger</div>
+                        <div onclick="showReason(this, 'jan9-2')" class="guess-btn px-2 py-1 rounded border border-transparent">Emily Sams</div>
+                        <div onclick="showReason(this, 'jan9-3')" class="guess-btn px-2 py-1 rounded border border-transparent">Naomi Girma</div>
                     </div>
-                    <div class="mt-auto pt-4 border-t border-gray-800 bold-target">
-                        <p class="text-[9px] text-[--ac-pink] font-bold uppercase mb-2">Reasoning</p>
-                        <p class="text-[10px] leading-relaxed text-gray-400 italic">"Shield" (🛡️) refers to the 2024 NWSL Shield winner. **Sams** is the elite anchor required to modernize the ACFC defense.</p>
+                    <div class="mt-auto pt-4 border-t border-gray-800 italic text-[11px] text-gray-400 bold-target">
+                        <div id="jan9-1" class="reasoning-box active">
+                            **Reasoning:** The literal 🛡️ NWSL Shield winner from Gotham FC and a locked-in starter for the USWNT 🇺🇸. Her elite inverted full-back play would stabilize the backline.
+                        </div>
+                        <div id="jan9-2" class="reasoning-box">
+                            **Reasoning:** The anchor of the 2024 NWSL Shield winning Orlando Pride 🛡️. Sams is the premier 🇺🇸 center-back free agent. Her arrival would solve the defensive leak.
+                        </div>
+                        <div id="jan9-3" class="reasoning-box">
+                            **Reasoning:** A "dream" signing. The 🛡️ symbol of the USWNT 🇺🇸 defense. While a long shot, ACFC's power makes an unprecedented buy-out possible.
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
+
         
         <!-- Keys to Success -->
         <section id="keys-to-success" class="space-y-12">
@@ -408,6 +473,23 @@
         { name: "Bay FC", pts: [0, 0, 0, 34], w: [0, 0, 0, 11], l: [0, 0, 0, 14], t: [0, 0, 0, 1], gf: [0, 0, 0, 31], ga: [0, 0, 0, 41] },
         { name: "Utah Royals", pts: [0, 0, 0, 25], w: [0, 0, 0, 7], l: [0, 0, 0, 15], t: [0, 0, 0, 4], gf: [0, 0, 0, 22], ga: [0, 0, 0, 40] }
     ];
+    
+    /**
+         * 1. HINT ACCORDION LOGIC
+         * Handles swapping player reasoning within the January Five cards.
+         */
+        function showReason(btn, reasonId) {
+            const card = btn.closest('.hint-card');
+            
+            // Toggle Button Active State
+            card.querySelectorAll('.guess-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Toggle Reasoning Content
+            card.querySelectorAll('.reasoning-box').forEach(r => r.classList.remove('active'));
+            const target = document.getElementById(reasonId);
+            if (target) target.classList.add('active');
+        }
 
     /**
      * BOLDING ENGINE: Converts **text** to styled <strong>
